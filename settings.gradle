@@ -1,0 +1,3 @@
+include ':tbs'
+include ':app'
+rootProject.name = "tbs-demo"
