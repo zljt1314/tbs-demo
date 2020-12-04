@@ -1,5 +1,6 @@
 package com.ljt.tbs_demo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -7,6 +8,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.ljt.tbs.SuperFileView;
 
@@ -46,14 +49,22 @@ public class TbsReaderActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         openFile();
     }
 
     private void openFile() {
+        if(!TbsApplication.mIsInitTBSSuccess) {
+            Toast.makeText(this, "TBS未加载成功，等待或者用其他方式打开！", Toast.LENGTH_SHORT).show();
+            return;
+        }
         File filePath = Environment.getExternalStorageDirectory();
         mfile = new File(filePath, "/Android/data/com.tencent.mm/MicroMsg/Download/简历.docx");
+        if(!mfile.exists()) {
+            Toast.makeText(this, mfile.getAbsolutePath() + "不存在！", Toast.LENGTH_SHORT).show();
+            return;
+        }
         superFileView.show();
     }
 

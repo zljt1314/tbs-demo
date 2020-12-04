@@ -24,7 +24,6 @@ public class SuperFileView extends FrameLayout implements TbsReaderView.ReaderCa
 
     private static String TAG = "SuperFileView";
     private TbsReaderView mTbsReaderView;
-    private int saveTime = -1;
     private Context context;
 
     public SuperFileView(Context context) {
@@ -42,14 +41,11 @@ public class SuperFileView extends FrameLayout implements TbsReaderView.ReaderCa
         this.context = context;
     }
 
-
     private OnGetFilePathListener mOnGetFilePathListener;
-
 
     public void setOnGetFilePathListener(OnGetFilePathListener mOnGetFilePathListener) {
         this.mOnGetFilePathListener = mOnGetFilePathListener;
     }
-
 
     private TbsReaderView getTbsReaderView(Context context) {
         return new TbsReaderView(context, this);
@@ -75,21 +71,21 @@ public class SuperFileView extends FrameLayout implements TbsReaderView.ReaderCa
             Log.d(TAG, mFile.toString());
             localBundle.putString("filePath", mFile.toString());
 
-            localBundle.putString("tempPath", Environment.getExternalStorageDirectory() + "/" + "TbsReaderTemp");
+            localBundle.putString("tempPath", "/storage/emulated/0/TbsReaderTemp");
 
-            if (this.mTbsReaderView == null || mTbsReaderView.getContext() == null) {
+            if (this.mTbsReaderView == null) {
                 this.mTbsReaderView = getTbsReaderView(context);
             }
             boolean bool = this.mTbsReaderView.preOpen(getFileType(mFile.toString()), false);
             if (bool) {
                 this.mTbsReaderView.openFile(localBundle);
             } else {
+                // todo 这里可以做个容错，比如用第三方软件打开。
                 Toast.makeText(getContext(), "打开" + getFileType(mFile.toString()) + "文件失败", Toast.LENGTH_SHORT).show();
             }
         } else {
             Log.e(TAG, "文件路径无效！");
         }
-
     }
 
 

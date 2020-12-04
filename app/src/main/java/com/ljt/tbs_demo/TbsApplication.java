@@ -15,6 +15,7 @@ import java.util.HashMap;
  */
 public class TbsApplication extends Application {
 
+    // tbs是否初始化成功
     public static boolean mIsInitTBSSuccess = false;
 
     @Override
@@ -24,11 +25,13 @@ public class TbsApplication extends Application {
     }
 
     public void initTBS() {
+        //  设置开启优化方案
         HashMap<String, Object> map = new HashMap<>();
         map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
         map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
         QbSdk.initTbsSettings(map);
 
+        //下载x5内核，可以不需要，因为会共用其他软件的x5内核，比如微信、QQ等
         QbSdk.setDownloadWithoutWifi(true);
         QbSdk.setTbsListener(
                 new TbsListener() {
