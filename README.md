@@ -1,4 +1,3 @@
-# TBS腾讯浏览服务
 ## 概述
 移动互联网已经从生活到工作渗透到现实生活中每个点，伴随着链接的建立各种数字化的文件充满了我们的身边，在各种应用中出现：从小说中的epub、到股票中的pdf、再到工作群里的压缩包，更不用说，在日常微信、邮箱中的表格、ppt、doc信息。文件的浏览与管理的诉求已经变成了常态。TBS服务除了在网页、视频领域外，也在文件维度提供了稳定、全面的文件浏览服务。
 
@@ -29,6 +28,7 @@ api 'com.tencent.tbs.tbssdk:sdk:43939'
 #### 1.3 混淆配置
 为了保障X5功能的正常使用，您需要在您的proguard.cfg文件中添加如下配置：
 
+[完整proguard](http://res.imtt.qq.com/TES/proguard.zip)
 ```
 -dontwarn dalvik.**
 -dontwarn com.tencent.smtt.**
@@ -172,8 +172,8 @@ public class TbsApplication extends Application {
 1. 加载文件核心类是TbsReaderView，TbsReaderView建议通过动态创建，不要使用xml中引用；
 1. TBS目前只支持加载本地文件。所以远程文件需要先下载后用TBS加载文件显示；
 1. 加载文件的界面，离开本界面之后务必销毁TbsReaderView，否则再次加载文件无法加载成功，会一直显示加载文件进度条；代码如下：tbsReaderView.onStop();
-
 #### 2.1 实例化TbsReaderView
+
 
 ```
 //实例化TbsReaderView，然后将它装入我们准备的容器
@@ -255,3 +255,4 @@ public void onStopDisplay() {
         }
     }
 ```
+参考：[TBS疼腾讯浏览服务接入文档 ](https://x5.tencent.com/tbs/guide/sdkInit.html)
