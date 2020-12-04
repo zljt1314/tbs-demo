@@ -255,4 +255,4 @@ public void onStopDisplay() {
         }
     }
 ```
-参考：[TBS疼腾讯浏览服务接入文档 ](https://x5.tencent.com/tbs/guide/sdkInit.html)
+[TBS疼腾讯浏览服务接入文档 ](https://x5.tencent.com/tbs/guide/sdkInit.html)
