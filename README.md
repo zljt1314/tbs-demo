@@ -172,6 +172,7 @@ public class TbsApplication extends Application {
 1. 加载文件核心类是TbsReaderView，TbsReaderView建议通过动态创建，不要使用xml中引用；
 1. TBS目前只支持加载本地文件。所以远程文件需要先下载后用TBS加载文件显示；
 1. 加载文件的界面，离开本界面之后务必销毁TbsReaderView，否则再次加载文件无法加载成功，会一直显示加载文件进度条；代码如下：tbsReaderView.onStop();
+
 #### 2.1 实例化TbsReaderView
 
 ```
